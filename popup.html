@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      width:400px;
+      padding:1rem;
+    }
+    ul, li {
+      padding:0;
+      margin:0;
+    }
+    li {
+      margin-left:15px;
+    }
+    a {
+      color:black;
+    }
+    input[type=text] {
+      width:150px;
+      margin-right:5px;
+    }
+    .hidden {
+      display:none;
+    }
+    .bold {
+      font-weight:bold;
+    }
+    .blue {
+      color: blue;
+    }
+    .red {
+      color: red;
+    }
+  </style>
+  <script src="config.js"></script>
+  <script src="popup_script.js"></script>
+</head>
+<body>
+<h1>AutoRefresh</h1>
+<div>만든사람: seunggabi</div>
+<div>이메일: seunggabi@naver.com</div>
+<div>블로그: <a href="http://seunggabi.tistory.com" target="_blank">http://seunggabi.tistory.com</a></div>
+<div>업데이트: 2018.02.20</div>
+<br/>
+<br/>
+<div class="bold">[설정]</div>
+<div>
+  <label>주소:</label>
+  <input type="text" id="url" placeholder="http://seunggabi.com"><span class="red">(http:// or https:// 필수)</span>
+</div>
+<div>
+  <label>횟수:</label>
+  <input type="text" id="count">번
+</div>
+<div>
+  <label>주기:</label>
+  <input type="text" id="period">ms
+  <span class="red">(1초 = 1000ms)</span>
+</div>
+<div>
+  <button id="save">저장</button>
+</div>
+<br/>
+<br/>
+<div>
+  <span class="bold blue">사용해보시고 좋다고 느껴지시면 좋은 리뷰 부탁드려용!</span>
+  <a href="" target="_blank" class="bold red">(링크)</a>
+</div>
+<br/>
+<div>
+  <div class="bold">
+    [개발자가 만든 것]<a id="siteListButton" href="#">(펼치기)</a>
+  </div>
+  <div id="siteList" class="hidden">
+    - <a href="http://ExcelMergeTool.com" target="_blank">ExcelMergeTool</a>
+    - <a href="https://chrome.google.com/webstore/detail/autoskip/bmiijndgbkepjhffnidelmdkagfgcnil?hl=ko" target="_blank">AutoSkip</a>
+  </div>
+</div>
+</body>
+</html>
