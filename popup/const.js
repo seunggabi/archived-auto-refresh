@@ -24,6 +24,17 @@ const data = {
   },
   project: [
     {
+      name: "Clip History",
+      urls: [
+        {
+          name: "Whale",
+          url: "https://store.whale.naver.com/detail/nclmnfnglpbfhdnmdpkjpnnagbkdlhai",
+        }
+      ],
+      className: "bold",
+      style: "",
+    },
+    {
       name: "Smart Boook",
       urls: [
         {
