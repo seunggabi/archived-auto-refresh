@@ -1,7 +1,7 @@
 function a(link, $parents) {
   link.urls && link.urls.forEach(url => {
     let $a = $(doms.a);
-    $a.prop("href", url.url);
+    $a.prop('href', url.url);
     $a.text(`(${url.name})`);
     $a.addClass(link.className);
 
@@ -11,7 +11,7 @@ function a(link, $parents) {
   if(link instanceof Array) {
     link.forEach(l => {
       let $a = $(doms.a);
-      $a.prop("href", l.url);
+      $a.prop('href', l.url);
       $a.text(`${l.name}`);
       $a.addClass(l.className);
 
@@ -23,7 +23,7 @@ function a(link, $parents) {
 }
 
 function renderLink() {
-  a(data.review, $("#review"));
+  a(data.review, $('#review'));
 
   data.project.forEach(link => {
     let $wrapper = $(doms.li);
@@ -31,34 +31,35 @@ function renderLink() {
 
     a(link, $wrapper);
 
-    $("#project").append($wrapper);
+    $('#project').append($wrapper);
   });
 }
 
 function save() {
-  let url = document.querySelector("#url").value;
+  let url = $('#url').val();
 
   KEYS.forEach(function(name) {
-    let {value} = document.querySelector("#" + name);
+    let value = $('#' + name).val();
     chrome.cookies.set({
       url,
-      path: "/",
+      path: '/',
       name,
       value,
       expirationDate: makeDateTime(365)
     });
   });
+
+  start();
 }
 
 function renderView() {
-
   KEYS.forEach(function(name) {
     try {
       chrome.tabs.getSelected(null, function(tab) {
         chrome.cookies.get({url: tab.url, name}, function(c) {
           if (!c) return;
 
-          document.querySelector("#" + name).value = c.value;
+          $('#' + name).val(c.value);
         });
       });
     } catch (e) {
@@ -67,9 +68,30 @@ function renderView() {
   });
 }
 
+function keydownSaveAndStart(e) {
+  if(e.keyCode !== 13) {
+    return;
+  }
+
+  save();
+}
+
+function start() {
+  setTimeout(() => {
+    chrome.tabs.getSelected(null, function(tab) {
+      const code = 'window.location.reload();';
+
+      chrome.tabs.executeScript(tab.id, { code });
+    });
+  }, 10);
+}
+
 function bindEvent() {
-  const saveButton = document.querySelector("button#save");
-  saveButton && saveButton.addEventListener("click", save);
+  const $btn = $('button#save');
+  $btn && $btn.click(save);
+
+  const $text = $('input[type="text"]');
+  $text && $text.keydown(keydownSaveAndStart);
 }
 
 function init() {
@@ -84,4 +106,4 @@ function makeDateTime(exdays) {
   return d.getTime();
 }
 
-window.addEventListener("load", init);
+window.addEventListener('load', init);
