@@ -3,8 +3,8 @@ function init() {
     const count = getCookie("count");
     const period = getCookie("period") || 200;
 
-    if(~location.href.indexOf(url) && count > 0) {
-        setCookie("count", count-1, 365);
+    if (~location.href.indexOf(url) && count > 0) {
+        setCookie("count", count - 1, 365);
         setTimeout(callback, period);
     }
 }
@@ -17,7 +17,7 @@ function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
@@ -31,12 +31,12 @@ function getCookie(cname) {
 
 function setCookie(name, value, exdays) {
     const d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    const expires = "expires="+ d.toUTCString();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + d.toUTCString();
 
     document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 
-(function(){
+(function () {
     init();
 })();
