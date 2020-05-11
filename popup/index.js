@@ -98,6 +98,8 @@ function init() {
   renderLink();
   renderView();
   bindEvent();
+
+  $('#url').focus();
 }
 
 function makeDateTime(exdays) {
